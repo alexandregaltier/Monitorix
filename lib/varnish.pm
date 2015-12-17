@@ -283,40 +283,40 @@ sub varnish_update {
 			$bretr /= 60;
 			$config->{varnish_hist}->{$str} = $2;
 		}
-		if(/^n_wrk_create\s+(\d+)\s+/) {
+		if(/^(n_wrk_create|MAIN.threads_created)\s+(\d+)\s+/) {
 			$str = $e . "nwcre";
-			$nwcre = $1 - ($config->{varnish_hist}->{$str} || 0);
-			$nwcre = 0 unless $nwcre != $1;
+			$nwcre = $2 - ($config->{varnish_hist}->{$str} || 0);
+			$nwcre = 0 unless $nwcre != $2;
 			$nwcre /= 60;
-			$config->{varnish_hist}->{$str} = $1;
+			$config->{varnish_hist}->{$str} = $2;
 		}
-		if(/^n_wrk_failed\s+(\d+)\s+/) {
+		if(/^(n_wrk_failed|MAIN.threads_failed)\s+(\d+)\s+/) {
 			$str = $e . "nwfai";
-			$nwfai = $1 - ($config->{varnish_hist}->{$str} || 0);
-			$nwfai = 0 unless $nwfai != $1;
+			$nwfai = $2 - ($config->{varnish_hist}->{$str} || 0);
+			$nwfai = 0 unless $nwfai != $2;
 			$nwfai /= 60;
-			$config->{varnish_hist}->{$str} = $1;
+			$config->{varnish_hist}->{$str} = $2;
 		}
-		if(/^n_wrk_max\s+(\d+)\s+/) {
+		if(/^(n_wrk_max|MAIN.threads)\s+(\d+)\s+/) {
 			$str = $e . "nwmax";
-			$nwmax = $1 - ($config->{varnish_hist}->{$str} || 0);
-			$nwmax = 0 unless $nwmax != $1;
+			$nwmax = $2 - ($config->{varnish_hist}->{$str} || 0);
+			$nwmax = 0 unless $nwmax != $2;
 			$nwmax /= 60;
-			$config->{varnish_hist}->{$str} = $1;
+			$config->{varnish_hist}->{$str} = $2;
 		}
-		if(/^n_wrk_queued\s+(\d+)\s+/) {
+		if(/^(n_wrk_queued|MAIN.thread_queue_len)\s+(\d+)\s+/) {
 			$str = $e . "nwque";
-			$nwque = $1 - ($config->{varnish_hist}->{$str} || 0);
-			$nwque = 0 unless $nwque != $1;
+			$nwque = $2 - ($config->{varnish_hist}->{$str} || 0);
+			$nwque = 0 unless $nwque != $2;
 			$nwque /= 60;
-			$config->{varnish_hist}->{$str} = $1;
+			$config->{varnish_hist}->{$str} = $2;
 		}
-		if(/^n_wrk_drop\s+(\d+)\s+/) {
+		if(/^(n_wrk_drop|MAIN.threads_destroyed)\s+(\d+)\s+/) {
 			$str = $e . "nwdro";
-			$nwdro = $1 - ($config->{varnish_hist}->{$str} || 0);
-			$nwdro = 0 unless $nwdro != $1;
+			$nwdro = $2 - ($config->{varnish_hist}->{$str} || 0);
+			$nwdro = 0 unless $nwdro != $2;
 			$nwdro /= 60;
-			$config->{varnish_hist}->{$str} = $1;
+			$config->{varnish_hist}->{$str} = $2;
 		}
 		if(/^(n_lru_nuked|MAIN.n_lru_nuked)\s+(\d+)\s+/) {
 			$str = $e . "nlnuk";
